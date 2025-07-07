@@ -304,6 +304,9 @@ class RedPitaya(object):
             else:
                 source = None
 
+        else:
+            source = filename
+
         if not source is None and os.path.isfile(source):
             update_custom = 'custom'
 
