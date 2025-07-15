@@ -295,7 +295,7 @@ class RedPitaya(object):
     def update_fpga(self, filename=None):
         # For version 2.0 and higher to load a custom fpga uses the update_fpga.sh script
         update_custom = ''
-        update_cmd = '{} pyrpl'.format(
+        update_cmd = '//usr//bin//sh {} pyrpl'.format(
             os.path.join(self.parameters['serverdirname'],
                          'update_fpga.sh'))
         if filename is None:
