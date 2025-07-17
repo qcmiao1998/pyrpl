@@ -331,10 +331,6 @@ class RedPitaya(object):
                 "filename=\"c://github//pyrpl//pyrpl//red_pitaya.bin\" adapted to your installation "
                 "directory of pyrpl: current filename: "+self.parameters['filename'])
 
-        # send update_fpga.sh to mark start of update process
-        self.put_file(
-            os.path.join(os.path.abspath(os.path.dirname(__file__)), 'update_fpga.sh'),
-            os.path.join(self.parameters['serverdirname'], 'update_fpga.sh'))
         # send binfile
         self.put_file(source, os.path.join(self.parameters['serverdirname'],
                                            self.parameters['serverbinfilename']))
