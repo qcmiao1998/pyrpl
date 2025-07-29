@@ -19,7 +19,7 @@ environment:
     # See: http://www.appveyor.com/docs/installed-software#python
     # only use python 3.5 for building .exe (for auto-upload of binaries)
     - PYTHON: "C:\\Miniconda36-x64"
-      PYTHON_VERSION: "3.6.x"
+      PYTHON_VERSION: "3.10"
       PYTHON_ARCH: "64"
 
 init:
@@ -53,16 +53,16 @@ install:
 
   # Upgrade to the latest version of pip to avoid it displaying warnings
   # about it being out of date.
-  - "python -m pip install --disable-pip-version-check --user --upgrade pip"
+  # - "python -m pip install --disable-pip-version-check --user --upgrade pip"
 
   # Install the build and runtime dependencies of the project.
-  - "conda update -q --yes conda"
+  # - "conda update -q --yes conda"
   - "conda config --add channels conda-forge"
   # add channel twice to move it to the top of the channel priority list
   - "conda config --add channels conda-forge"
   - "conda config --set always_yes yes --set changeps1 no"
   # Create a conda environment using the required packages.
-  - "conda create -q --yes -n test-environment python=%PYTHON_VERSION% numpy scipy paramiko pandas nose pip pyqt qtpy"
+  - "conda create -q --yes -n test-environment python=%PYTHON_VERSION% numpy=1.19 pyqtgraph=0.12 pandas=1.3 scipy paramiko nose pip pyqt qtpy=1.9.0 pyyaml ipywidgets notebook"
   - "activate test-environment"
   # additional dependencies
   - "conda install --yes -c conda-forge coveralls"
