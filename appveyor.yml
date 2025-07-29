@@ -56,7 +56,7 @@ install:
   # - "python -m pip install --disable-pip-version-check --user --upgrade pip"
 
   # Install the build and runtime dependencies of the project.
-  - "conda clean --packages"
+  - "conda clean -y --packages"
   - "conda update -y -n base conda"
   # - "conda config --add channels conda-forge"
   # add channel twice to move it to the top of the channel priority list
