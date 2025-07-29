@@ -53,7 +53,7 @@ install:
 
   # Upgrade to the latest version of pip to avoid it displaying warnings
   # about it being out of date.
-  - "pip install --disable-pip-version-check --user --upgrade pip"
+  - "python -m pip install --disable-pip-version-check --user --upgrade pip"
 
   # Install the build and runtime dependencies of the project.
   - "conda update -q --yes conda"
@@ -114,12 +114,14 @@ test_script:
 on_success:
   - ps: |
       If ($env:APPVEYOR_REPO_TAG -eq "true") {
-          python .deploy_to_sourceforge.py pyrpl-windows.exe;
+          # python .deploy_to_sourceforge.py pyrpl-windows.exe;
+          Get-ChildItem .\pyrpl-windows.exe | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
       }
   - ps: |
       If ($env:APPVEYOR_REPO_TAG -ne "true") {
           mv ./pyrpl-windows.exe ./pyrpl-windows-develop.exe;
-          python .deploy_to_sourceforge.py pyrpl-windows-develop.exe;
+          # python .deploy_to_sourceforge.py pyrpl-windows-develop.exe;
+          Get-ChildItem .\pyrpl-windows-develop.exe | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
       }
 
 # Do not build feature branch with open Pull Requests
